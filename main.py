@@ -83,17 +83,6 @@ def map():
     query_link += google_API_KEY
     query_link += "&q=" + query
 
-    if request.method == 'POST':
-        if 'record' in request.form:
-            return redirect(url_for('input'))
-        elif 'timer' in request.form:
-            return redirect(url_for('timer'))
-        elif 'map' in request.form:
-            return redirect(url_for("map"))
-        elif 'info' in request.form:
-            return redirect(url_for("info"))
-    elif request.method == 'GET':
-        return render_template("map.html", query_link = query_link)
     return render_template("map.html", query_link = query_link)
 
 """ Information (to link to more info dependong on type of drug) """
