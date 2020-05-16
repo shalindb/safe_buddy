@@ -3,17 +3,21 @@ from flask import Flask
 
 app = Flask(__name__)
 
+""" Starting point, where client inputs user information """
 
 @app.route('/start')
 def start():
     return flask.render_template('input_form.html')
 
 
+""" Sets client information to the request object's cookies and prompts emergency form
+Access cookies: flask.request.cookies (type:dict) """
+
+# NOTE: Still need to make emergency form default the contact number to 911 if the person chooses not to respond
 @app.route('/set_user_info', methods=['POST', 'GET'])
 def set_user_info():
     if flask.request.method == 'POST':
         name, age, drug_type = flask.request.form.values()
-        # FOR DEBUGGING: return f'Name: {name}, Age: {age}, Drug: {drug_type}'
 
         resp = flask.make_response(flask.render_template('emergency_form.html', name=name))
         resp.set_cookie('Name', name)
@@ -22,19 +26,21 @@ def set_user_info():
         # now can access using flask.request.cookies (dictionary containing key,value pairs for client input)
         return resp
 
-@app.route('/timer')
+
+""" Sets the emergency contact information to the request object's cookies and prompts timer interface
+Access cookies: flask.request.cookies (type:dict) """
+
+@app.route('/timer', methods=['POST', 'GET'])
 def timer():
     if flask.request.method == 'POST':
-        return flask.request.form.values()
+        c_name, c_phone = flask.request.form.values()
 
+        c_resp = flask.make_response(flask.render_template('timer.html'))
+        c_resp.set_cookie('Contact Name', c_name)
+        c_resp.set_cookie('Contact Phone', c_phone)
 
-# @app.route('/get_info')
-# def get_info():
-#     name = flask.request.cookies['Name']
-#     age = flask.request.cookies['Age']
-#     drug = flask.request.cookies['Drug']
-#     return f'Hello {name}, of age {age}. You are addicted to {drug}.'
+        return c_resp
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=8180)
+    app.run(debug=True, port=8280)
