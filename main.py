@@ -7,10 +7,26 @@ google_API_KEY = os.getenv("google_API_KEY")
 
 app = Flask(__name__)
 
-""" Starting point, where client inputs user information """
+""" Home page to redirect to other pages (ie. input form or information)"""
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    #TODO
+    if request.method == 'POST':
+        if 'record' in request.form:
+            return redirect(url_for('input'))
+        elif 'timer' in request.form:
+            return redirect(url_for('timer'))
+        elif 'map' in request.form:
+            return redirect(url_for("map"))
+        elif 'info' in request.form:
+            return redirect(url_for("info"))
+    elif request.method == 'GET':
+        return render_template('index.html')
+    return render_template('index.html')
 
-@app.route('/start/')
-def start():
+""" Starting point, where client inputs user information """
+@app.route('/input/')
+def input():
     return render_template('input_form.html')
 
 
@@ -46,22 +62,6 @@ def timer():
         return c_resp
     return render_template("timer.html")
 
-""" Home page to redirect to other pages (ie. input form or information)"""
-@app.route('/', methods=['GET', 'POST'])
-def index():
-    #TODO
-    if request.method == 'POST':
-        if 'record' in request.form:
-            return redirect(url_for('start'))
-        elif 'timer' in request.form:
-            return redirect(url_for('timer'))
-        elif 'map' in request.form:
-            return redirect(url_for("map"))
-        elif 'info' in request.form:
-            return redirect(url_for("info"))
-    elif request.method == 'GET':
-        return render_template('index.html')
-    return render_template('index.html')
 
 """ Gets user location from ip address """
 def get_location(ip_address):
@@ -85,7 +85,7 @@ def map():
 
     if request.method == 'POST':
         if 'record' in request.form:
-            return redirect(url_for('start'))
+            return redirect(url_for('input'))
         elif 'timer' in request.form:
             return redirect(url_for('timer'))
         elif 'map' in request.form:
