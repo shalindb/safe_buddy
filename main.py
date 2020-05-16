@@ -1,5 +1,5 @@
 import flask
-from flask import Flask
+from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(__name__)
 
@@ -42,5 +42,28 @@ def timer():
         return c_resp
 
 
+""" Home page to redirect to other pages (ie. input form or information)"""
+@app.route('/')
+def home():
+    #TODO
+    return flask.render_template('home_page.html')
+
+""" Helpful locations map to link to safe injection facilities,
+needle exchanges, Supervised Consumption Services, take-home naxolone centers,
+housing, shelter, safe houses) """
+@app.route('/map/')
+def helpful_map():
+    # TODO 
+    loc = request.environ['REMOTE_ADDR']
+    
+    return 'location %s' %loc
+
+""" Information (to link to more info dependong on type of drug) """
+@app.route('/info/')
+def info():
+    #TODO
+
+    return flask.render_template('info.html')
+
 if __name__ == "__main__":
-    app.run(debug=True, port=8280)
+    app.run(debug=False, port=5000)
