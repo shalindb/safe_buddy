@@ -91,5 +91,14 @@ def info():
     #TODO
     return render_template('info.html')
 
+@app.route('/loc_getter', methods=['GET', 'POST'])
+def loc_getter():
+    if request.method == 'POST':
+        print('Data:')
+        print(request.get_json(force=True))
+        data = request.get_json(force=True)
+        return 'Archived.', 200
+
+
 if __name__ == "__main__":
     app.run(debug=False, port=5000)
