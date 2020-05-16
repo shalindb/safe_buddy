@@ -44,36 +44,36 @@ def timer():
         c_resp.set_cookie('Contact Phone', c_phone)
 
         return c_resp
-
+    return render_template("timer.html")
 
 """ Home page to redirect to other pages (ie. input form or information)"""
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def index():
     #TODO
-    # if request.method == 'POST':
-    #     if request.form['submit_button'] == "Record Info":
-    #         return redirect(url_for('start'))
-    #     elif request.form['submit_button'] == "Safety Timer":
-    #         return redirect(url_for('timer'))
-    #     elif request.form['submit_button'] == "Nearby Resources":
-    #         return redirect(url_for("map"))
-    #     elif request.form['submit_button'] == "Information":
-    #         return redirect(url_for("info"))
-    # elif request.method == 'GET':
-    #     return render_template('index.html')
+    if request.method == 'POST':
+        if 'record' in request.form:
+            return redirect(url_for('start'))
+        elif 'timer' in request.form:
+            return redirect(url_for('timer'))
+        elif 'map' in request.form:
+            return redirect(url_for("map"))
+        elif 'info' in request.form:
+            return redirect(url_for("info"))
+    elif request.method == 'GET':
+        return render_template('index.html')
     return render_template('index.html')
 
 """ Helpful locations map to link to safe injection facilities,
 needle exchanges, Supervised Consumption Services, take-home naxolone centers,
 housing, shelter, safe houses) """
-@app.route('/map/')
-def helpful_map():
+@app.route('/map/', methods=['GET', 'POST'])
+def map():
     # TODO 
     loc = request.environ['REMOTE_ADDR']
-    return 'location %s key' %loc
+    return render_template("map.html")
 
 """ Information (to link to more info dependong on type of drug) """
-@app.route('/info/')
+@app.route('/info/', methods=['GET', 'POST'])
 def info():
     #TODO
 
