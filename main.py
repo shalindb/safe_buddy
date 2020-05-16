@@ -1,5 +1,9 @@
 import flask
 from flask import Flask, render_template, request, make_response, redirect, url_for
+from dotenv import load_dotenv
+import os
+load_dotenv()
+google_API_KEY = os.getenv("google_API_KEY")
 
 app = Flask(__name__)
 
@@ -66,8 +70,7 @@ housing, shelter, safe houses) """
 def helpful_map():
     # TODO 
     loc = request.environ['REMOTE_ADDR']
-    
-    return 'location %s' %loc
+    return 'location %s key' %loc
 
 """ Information (to link to more info dependong on type of drug) """
 @app.route('/info/')
