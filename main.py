@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 """ Starting point, where client inputs user information """
 
-@app.route('/start')
+@app.route('/start/')
 def start():
     return render_template('input_form.html')
 
@@ -63,6 +63,10 @@ def index():
         return render_template('index.html')
     return render_template('index.html')
 
+""" Gets user location from ip address """
+def get_location(ip_address):
+    return None
+
 """ Helpful locations map to link to safe injection facilities,
 needle exchanges, Supervised Consumption Services, take-home naxolone centers,
 housing, shelter, safe houses) """
@@ -70,14 +74,33 @@ housing, shelter, safe houses) """
 def map():
     # TODO 
     loc = request.environ['REMOTE_ADDR']
-    return render_template("map.html")
+    query = "record+stores+in+Seattle"
+
+    post_link = "https://www.googleapis.com/geolocation/v1/geolocate?key="
+    post_link += google_API_KEY
+    
+    query_link = "https://www.google.com/maps/embed/v1/place?key="
+    query_link += google_API_KEY
+    query_link += "&q=" + query
+
+    if request.method == 'POST':
+        if 'record' in request.form:
+            return redirect(url_for('start'))
+        elif 'timer' in request.form:
+            return redirect(url_for('timer'))
+        elif 'map' in request.form:
+            return redirect(url_for("map"))
+        elif 'info' in request.form:
+            return redirect(url_for("info"))
+    elif request.method == 'GET':
+        return render_template("map.html", query_link = query_link)
+    return render_template("map.html", query_link = query_link)
 
 """ Information (to link to more info dependong on type of drug) """
 @app.route('/info/', methods=['GET', 'POST'])
 def info():
     #TODO
-
-    return flask.render_template('info.html')
+    return render_template('info.html')
 
 if __name__ == "__main__":
     app.run(debug=False, port=5000)
