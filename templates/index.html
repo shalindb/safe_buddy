@@ -1,12 +1,51 @@
 <!doctype html>
 <html>
-   <body>
-        <h1> Home page - TODO</h1>
-        <form method="POST">
-            <input type="submit" name = "record" value="Record Info">
-            <input type="submit" name = "timer" value="Safety Timer">
-            <input type="submit" name = "map" value="Nearby Resources">
-            <input type="submit" name = "info" value="Information">
-        </form>
-    </body>
+
+<head>
+  <title>Home Page</title>
+
+  <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/jumbotron/">
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <link href="../static/css/bootstrap.css" rel="stylesheet">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="#">Safe Buddy</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+      aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/map/">Maps</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/timer/" >Timer</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/info/" >Info</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <h1> Home page - TODO</h1>
+  <form method="POST">
+    <input type="submit" name="record" value="Record Info">
+    <input type="submit" name="timer" value="Safety Timer">
+    <input type="submit" name="map" value="Nearby Resources">
+    <input type="submit" name="info" value="Information">
+  </form>
+</body>
+
 </html>
