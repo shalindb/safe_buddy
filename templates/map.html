@@ -94,11 +94,11 @@
     }
 
     $(document).ready(function () {
-      $(".mr-auto .nav-item").bind("click", function (event) {
+      $(".mr-auto .nav-pills").bind("click", function (event) {
         console.log("some starting")
         event.preventDefault();
         var clickedItem = $(this);
-        $(".mr-auto .nav-item").each(function () {
+        $(".mr-auto .nav-pills").each(function () {
           $(this).css("display", "none");
         });
         clickedItem.css("display", "flex");
