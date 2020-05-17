@@ -1,5 +1,5 @@
 import flask
-from flask import Flask, render_template, request, make_response, redirect, url_for, jsonify
+from flask import Flask, render_template, request, make_response, redirect, url_for, jsonify, flash
 from dotenv import load_dotenv
 import os
 load_dotenv()
@@ -21,12 +21,13 @@ def index():
         elif 'info' in request.form:
             return redirect(url_for("info"))
     elif request.method == 'GET':
-        return render_template('index.html')
-    return render_template('index.html')
+        return render_template('index.html', cookies=request.cookies)
+    return render_template('index.html', cookies=request.cookies)
 
 """ Starting point, where client inputs user information """
 @app.route('/input/')
 def input():
+    print(request.cookies)
     return render_template('input_form.html')
 
 
@@ -49,18 +50,21 @@ def set_user_info():
 
 """ Sets the emergency contact information to the request object's cookies and prompts timer interface
 Access cookies: flask.request.cookies (type:dict) """
-
-@app.route('/timer/', methods=['POST', 'GET'])
-def timer():
+@app.route('/set_emergency_contact/', methods=['POST', 'GET'])
+def set_contact():
     if request.method == 'POST':
         c_name, c_phone = request.form.values()
 
-        c_resp = make_response(render_template('timer.html'))
+        c_resp = make_response(render_template('index.html'))
         c_resp.set_cookie('Contact Name', c_name)
         c_resp.set_cookie('Contact Phone', c_phone)
 
         return c_resp
-    return render_template("timer.html")
+    return render_template("index.html")
+
+@app.route('/timer/', methods=['POST', 'GET'])
+def timer():
+    return 'TO-DO'
 
 
 """ Gets user location from ip address """
@@ -100,38 +104,6 @@ def hallucinogens():
 def multiclass():
     return render_template('multiclass.html')
 
-# @app.route('/loc_getter', methods=['GET', 'POST'])
-# def loc_getter():
-#     if request.method == 'POST':
-#         data = request.get_json(force=True)
-#         query = "record+stores+in+Seattle"
-#         query_link = f'https://www.google.com/maps/embed/v1/search?key={google_API_KEY}&q={query}'
-#         query_link += '&center='+ str(data['lat']) + ',' + str(data['lng'])
-#         print("QUERYL:", query_link)
-#         # resp = make_response(render_template('map.html'), query_link=query_link)
-#         # resp.set_cookie('Latitude', str(data['lat']))
-#         # resp.set_cookie('Longitude', str(data['lng']))
-#
-#         return render_template(('map.html'), query_link=query_link)
-"""
-                             // POST
-            fetch('/map', { 
-
-                // Specify the method
-                method: 'POST',
-
-                // A JSON payload
-                body: JSON.stringify(pos)
-            }).then(function (response) { // At this point, Flask has printed our JSON
-                return response.text();
-            }).then(function (text) {
-
-                console.log('POST response: ');
-
-                // Should be 'OK' if everything was successful
-                console.log('Success.');
-            });
-"""
 
 
 

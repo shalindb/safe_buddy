@@ -62,13 +62,36 @@
     </div>
   </nav>
 
-  <h1> Home page - TODO</h1>
-  <form method="POST">
-    <input type="submit" name="record" value="Record Info">
-    <input type="submit" name="timer" value="Safety Timer">
-    <input type="submit" name="map" value="Nearby Resources">
-    <input type="submit" name="info" value="Information">
-  </form>
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <!-- Jumbotron Header -->
+    <header class="jumbotron my-4">
+      {%if 'Name' in cookies.keys()%}
+      <h1 class="display-3">Welcome back to SafeBuddy, {{cookies['Name'][0].upper() + cookies['Name'][1:]}}. It's nice to see you again.</h1>
+      <p class="lead"> Here at SafeBuddy we believe in the potential of every individual. No matter the situation you are in, we are here to help. This tool is there for both users and those seeking information. On the facts surrounding the overdose epidemic. </p>
+      <p class="lead">Disclaimer: You will not be persecuted by using our resources, nor will you suffer at the hands of criminalization for seeking sobriety. We are here for you, {{cookies['Name'][0].upper() + cookies['Name'][1:]}}.</p>
+      <a href="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pinterest.com%2Fpin%2F28217935150634912%2F&psig=AOvVaw2enMWVAsu_R4KRDXF281-A&ust=1589794203417000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCIDtqYjLuukCFQAAAAAdAAAAABAI" class="btn btn-primary btn-lg">For you.</a>
+      {%else%}
+      <h1 class="display-3">Welcome to SafeBuddy!</h1>
+      <p class="lead"> Here at SafeBuddy we believe in the potential of every individual. No matter the situation you are in, we are here to help. This tool is there for both users and those seeking information. On the facts surrounding the overdose epidemic. </p>
+      <p class="lead">Disclaimer: You will not be persecuted by using our resources, nor will you suffer at the hands of criminalization for seeking sobriety. We are here for you.</p>
+      <a href="https://drugpolicy.ca/how-to-help-the-opioid-crisis/" class="btn btn-primary btn-lg">For friends and family alike, seeking to help.</a>
+      {%endif%}
+
+    </header>
+
+
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Fake Copyright &copy; SafeBuddy RU Hacks 2020</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
 </body>
 
 </html>
