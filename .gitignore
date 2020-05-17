@@ -3,5 +3,9 @@
 env/
 venv/
 .env
+
 .idea/safe_buddy.iml
 .idea/misc.xml
+
+__pycache__
+
