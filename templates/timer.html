@@ -85,7 +85,7 @@
             <div class="col">
               <div class="dropdown">
                 <button class="toggle-blue btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Dropdown button
+                  Time Periods
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                   <a id="15m" class="dropdown-item" >15 minutes</a>
@@ -114,7 +114,11 @@
         </button>
       </div>
       <div class="modal-body">
-        Please notify the system if you are feeling good.
+        {%if 'Contact Name' in cookies.keys()%}
+        Please notify the system if you are feeling good. If anything is wrong, we can contact {{cookies['Contact Name'][0].upper() + cookies['Contact Name'][1:]}}
+        {%else%}
+        Please notify the system if you are feeling good. If anything is wrong, we can contact 911 for you.
+        {%endif%}
       </div>
       <!-- <p style="padding-left: 17px;"> Resets before help is called: <span id='helpCounter'>3</span></p> -->
       <div class="modal-footer">

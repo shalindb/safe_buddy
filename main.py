@@ -54,17 +54,18 @@ Access cookies: flask.request.cookies (type:dict) """
 def set_contact():
     if request.method == 'POST':
         c_name, c_phone = request.form.values()
+        print(c_name, c_phone)
 
-        c_resp = make_response(render_template('index.html'))
+        c_resp = make_response(render_template('index.html', cookies=request.cookies))
         c_resp.set_cookie('Contact Name', c_name)
         c_resp.set_cookie('Contact Phone', c_phone)
 
         return c_resp
-    return render_template("index.html")
+    return render_template("index.html", cookies=request.cookies)
 
 @app.route('/timer/', methods=['POST', 'GET'])
 def timer():
-    return 'TO-DO'
+    return render_template('timer.html', cookies=request.cookies)
 
 
 """ Gets user location from ip address """
