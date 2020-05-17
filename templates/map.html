@@ -2,6 +2,71 @@
 <html>
 
 <head>
+  <div id="map"></div>
+  <script>
+      var map, infoWindow;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: -34.397, lng: 150.644},
+          zoom: 6
+        });
+        infoWindow = new google.maps.InfoWindow;
+
+        // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+        console.log('DEBUG 1')
+
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude,
+            };
+            console.log('DEBUG 2')
+            infoWindow.setPosition(pos);
+            infoWindow.setContent('Location found.');
+            infoWindow.open(map);
+            map.setCenter(pos);
+
+           document.getElementById('frame1').src += '&q=needle+program&center='
+           document.getElementById('frame1').src += position.coords.latitude + ',';
+           document.getElementById('frame1').src += position.coords.longitude + '&zoom=8';
+
+           document.getElementById('frame2').src += '&q=supervised+consumption+site&center='
+           document.getElementById('frame2').src += position.coords.latitude + ',';
+           document.getElementById('frame2').src += position.coords.longitude + '&zoom=8';
+
+           document.getElementById('frame3').src += '&q=pharmacy&center='
+           document.getElementById('frame3').src += position.coords.latitude + ',';
+           document.getElementById('frame3').src += position.coords.longitude + '&zoom=8';
+
+           document.getElementById('frame4').src += '&q=shelter&center='
+           document.getElementById('frame4').src += position.coords.latitude + ',';
+           document.getElementById('frame4').src += position.coords.longitude + '&zoom=8';
+
+            console.log(document.getElementById('frame1').src)
+          }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+          });
+        } else {
+
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infoWindow, map.getCenter());
+        }
+      }
+
+      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(browserHasGeolocation ?
+                              'Error: The Geolocation service failed.' :
+                              'Error: Your browser doesn\'t support geolocation.');
+        infoWindow.open(map);
+      }
+
+
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBaV6Lfef1mqCu6ctLxtHChmzwiR00L47g&callback=initMap">
+    </script>
   <title>Map</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, height=device-height initial-scale=1, shrink-to-fit=no">
@@ -22,6 +87,7 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
     integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
     crossorigin="anonymous"></script>
+
 </head>
 
 <body>
@@ -65,38 +131,33 @@
     <div class="row">
       <div class="col-md-1">
         <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-          <a class="nav-link active show" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab"
-            aria-controls="v-pills-home" aria-selected="false">Home</a>
+          <a class="nav-link active show" id="needle-programs-tab" data-toggle="pill" href="#needle-programs" role="tab"
+            aria-controls="needle-programs" aria-selected="false">Needle Programs</a>
           <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab"
             aria-controls="v-pills-profile" aria-selected="false">Profile</a>
           <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab"
             aria-controls="v-pills-messages" aria-selected="false">Messages</a>
           <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab"
             aria-controls="v-pills-settings" aria-selected="false">Settings</a>
-          <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab"
-            aria-controls="v-pills-settings" aria-selected="false">Settings</a>
-          <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab"
-            aria-controls="v-pills-settings" aria-selected="false">Settings</a>
-          <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab"
-            aria-controls="v-pills-settings" aria-selected="false">Settings</a>
+
         </div>
       </div>
       <div class="col-md-11">
         <div class="tab-content" id="v-pills-tabContent">
-          <div class="tab-pane fade active show" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-            <iframe width=100% height=500% frameborder="0" style="border:0" src={{ query_link+"toronto" }}
+          <div class="tab-pane fade active show" id="needle-programs" role="tabpanel" aria-labelledby="needle-programs-tab">
+            <iframe id=frame1 width=100% height=500% frameborder="0" style="border:0" src={{ query_link }}
               allowfullscreen></iframe>
           </div>
           <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-            <iframe width=100% height=500% frameborder="0" style="border:0" src={{ query_link+"vancouver" }}
+            <iframe id=frame2 width=100% height=500% frameborder="0" style="border:0" src={{ query_link }}
               allowfullscreen></iframe>
           </div>
           <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-            <iframe width=100% height=500% frameborder="0" style="border:0" src={{ query_link+"detroit" }}
+            <iframe id=frame3 width=100% height=500% frameborder="0" style="border:0" src={{ query_link }}
               allowfullscreen></iframe>
           </div>
           <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-            <iframe width=100% height=500% frameborder="0" style="border:0" src={{ query_link+"seattle" }}
+            <iframe id=frame4 width=100% height=500% frameborder="0" style="border:0" src={{ query_link }}
               allowfullscreen></iframe>
           </div>
         </div>
