@@ -88,27 +88,22 @@ def map():
 """ Information (to link to more info depending on type of drug) """
 @app.route('/info/', methods=['GET', 'POST'])
 def info():
-    #TODO
     return render_template('info.html')
 
 @app.route('/depressants/', methods=['GET', 'POST'])
 def depressants():
-    #TODO
     return render_template('depressants.html')
 
 @app.route('/stimulants/', methods=['GET', 'POST'])
 def stimulants():
-    #TODO
     return render_template('stimulants.html')
 
 @app.route('/hallucinogens/', methods=['GET', 'POST'])
 def hallucinogens():
-    #TODO
     return render_template('hallucinogens.html')
 
 @app.route('/multiclass/', methods=['GET', 'POST'])
 def multiclass():
-    #TODO
     return render_template('multiclass.html')
 
 @app.route('/loc_getter', methods=['GET', 'POST'])
