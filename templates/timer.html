@@ -9,7 +9,6 @@
   <!-- CSS only -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-
   <!-- JS, Popper.js, and jQuery -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -20,6 +19,8 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
     integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
     crossorigin="anonymous"></script>
+    <link href="../static/custom-css/main.css" rel="stylesheet">
+    <script src="../static/custom-js/stopwatch.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -58,6 +59,73 @@
       </ul>
     </div>
   </nav>
+</div>
+  <main style="margin-top: 56px" class="m-t-2 main-timer jumbotron">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-auto align-items-center">
+              <h1 style="white-space: nowrap;" class="timer-text"><span id="time-string">Time: 00 : 00 . 00</span></h1>
+            </div>
+          </div>
+          
+         <div style="margin-top: 50px" class="row justify-content-center">
+            <div class="col-lg-auto align-items-center">
+              <button id="start-btn" class="timer-button">Start</button>
+            </div>
+            <div class="col-lg-auto align-items-center">
+              <button id="reset-btn" class="timer-button">Reset</button>
+            </div>
+          </div>
+
+
+          <div style="margin-top: 50px;" class="row jusityf-content-start">
+            <div class="col">
+              <h3>Select time for popup:</h3>
+            </div>
+            <div class="col">
+              <div class="dropdown">
+                <button class="toggle-blue btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Dropdown button
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a id="15m" class="dropdown-item" >15 minutes</a>
+                  <a id="30m" class="dropdown-item" >30 minutes</a>
+                  <a id="60m" class="dropdown-item" >1 hour</a>
+                </div>
+              </div>
+            </div>
+           <div class="col">
+             <h3 id="chosen-time"> 30 minutes</h3>
+           </div>
+          </div>
+            <!-- Button trigger modal -->
+<button id="launchModal" type="button" class="hidden-btn" data-toggle="modal" data-target="#popupModal">
+  Launch modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="popupModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Check up</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Please notify the system if you are feeling good.
+      </div>
+      <!-- <p style="padding-left: 17px;"> Resets before help is called: <span id='helpCounter'>3</span></p> -->
+      <div class="modal-footer">
+        <button  id="dismissBtn" type="button" class="btn btn-secondary" data-dismiss="modal">I am OK!</button>
+      </div>
+    </div>
+  </div>
+       </div>
+      </main>
+    
+
   <a href="/" target="_self">Return back to home page</a>
 </body>
 
