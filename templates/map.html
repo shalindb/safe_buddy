@@ -4,15 +4,24 @@
 <head>
   <title>Map</title>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="viewport" content="width=device-width, height=device-height initial-scale=1, shrink-to-fit=no">
 
   <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/jumbotron/">
 
-  <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <!-- CSS only -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
-  <link href="../static/css/bootstrap.css" rel="stylesheet">
+  <!-- JS, Popper.js, and jQuery -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+    crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -34,11 +43,19 @@
         <li class="nav-item">
           <a class="nav-link" href="/timer/">Timer</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item-active">
           <a class="nav-link" href="/map/">Maps</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/info/">Info</a>
+        <li class="nav-item active dropdown">
+          <a class="nav-link dropdown-toggle" href="/info/" id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">Info</a>
+          <div class="dropdown-menu" aria-labelledby="dropdown01">
+            <a class="dropdown-item" href="/info/">Opioids/Opiates</a>
+            <a class="dropdown-item" href="/depressants/">Depressants</a>
+            <a class="dropdown-item" href="/stimulants/">Stimulants</a>
+            <a class="dropdown-item" href="/hallucinogens/">Hallucinogens</a>
+            <a class="dropdown-item" href="/multiclass/">Multiple Classes</a>
+          </div>
         </li>
       </ul>
     </div>
@@ -47,38 +64,63 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-1">
-        <h1>test</h1>
+        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+          <a class="nav-link active show" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab"
+            aria-controls="v-pills-home" aria-selected="false">Home</a>
+          <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab"
+            aria-controls="v-pills-profile" aria-selected="false">Profile</a>
+          <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab"
+            aria-controls="v-pills-messages" aria-selected="false">Messages</a>
+          <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab"
+            aria-controls="v-pills-settings" aria-selected="false">Settings</a>
+          <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab"
+            aria-controls="v-pills-settings" aria-selected="false">Settings</a>
+          <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab"
+            aria-controls="v-pills-settings" aria-selected="false">Settings</a>
+          <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab"
+            aria-controls="v-pills-settings" aria-selected="false">Settings</a>
+        </div>
+      </div>
+      <div class="col-md-11">
+        <div class="tab-content" id="v-pills-tabContent">
+          <div class="tab-pane fade active show" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+            <iframe width=100% height=500% frameborder="0" style="border:0" src={{ query_link+"toronto" }}
+              allowfullscreen></iframe>
+          </div>
+          <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+            <iframe width=100% height=500% frameborder="0" style="border:0" src={{ query_link+"vancouver" }}
+              allowfullscreen></iframe>
+          </div>
+          <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+            <iframe width=100% height=500% frameborder="0" style="border:0" src={{ query_link+"detroit" }}
+              allowfullscreen></iframe>
+          </div>
+          <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+            <iframe width=100% height=500% frameborder="0" style="border:0" src={{ query_link+"seattle" }}
+              allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!--
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-1">
+        <ul class="nav nav-pills nav-stacked">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#">Menu 1</a></li>
+          <li><a href="#">Menu 2</a></li>
+          <li><a href="#">Menu 3</a></li>
+        </ul>
       </div>
       <div class="col-md-11">
         <iframe width=100% height=500% frameborder="0" style="border:0" src={{ query_link }} allowfullscreen></iframe>
       </div>
     </div>
-  </div>
-  <!-- <div class="container-fluid">
-        <div class="row-flex">
-            <div class="span4">
-                <h1>test</h1>
-            </div>
-            <div class="span8">
-                <iframe width=100% height=100% frameborder="0" style="border:0" src={{ query_link }} allowfullscreen>
-                </iframe>
-            </div>
-        </div>
-    </div> -->
-
-  <!-- <div class="container-fluid">
-        <div class="row-fluid">
-            <div class="span2">
-                <h1>test</h1>
-
-            </div>
-            <div class="span10">
-                <h1>test2</h1>
-            </div>
-        </div>
-    </div> -->
-  <!-- <iframe width=100% height=100% frameborder="0" style="border:0" src={{ query_link }} allowfullscreen>
-                </iframe> -->
+  </div> -->
 </body>
 
 </html>
